@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Server</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <main>
+        <h1>Controle de reles</h1>
+        <button id="ledBTN" class="off" onclick="controleLed()">ON</button>
+    
+    </main>
+    <script>
+
+        async function controleLed(){
+
+            const response = await fetch('/toggleLED');
+            const store = await response.text();
+            const button = document.getElementById('ledBTN');
+
+            if(store == 'on'){
+                button.innerHTML = "OFF";
+                button.classList.remove('off');
+                button.classList.add('on');
+            }else{
+                button.innerHTML = "ON"; 
+                button.classList.remove('on');
+                button.classList.add('off');
+            }
+
+        }
+
+
+    </script>
+</body>
+</html>
